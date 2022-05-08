@@ -19,6 +19,13 @@ const authChecker = require('../../services/auth_check');
  *          - email
  *          - password
  */
+
+router.get('/', (req, res, next) => {
+    res.json({
+        message: 'Tes'
+    })
+})
+
 router.post('/', validator.validate("check_auth"), validator.verify, (req, res, next) => {
     new UsersControllers().getUsers({
         email: req.body.email,

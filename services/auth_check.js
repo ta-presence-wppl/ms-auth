@@ -23,6 +23,7 @@ exports.checkAuth = (req, res, next)=>{
     }
 }
 
-exports.generateToken = (data)=>{
-    return jwt.sign(data, process.env.JWT_CONF_TOKEN);
+exports.generateToken = (data) => {
+    var token = data ? data.kode_jabatan == 1 ? process.env.JWT_CONF_TOKEN : data.kode_jabatan == 2 ? process.env.JWT_TOKEN_ATASAN : null : null;
+    return jwt.sign(data, token);
 }

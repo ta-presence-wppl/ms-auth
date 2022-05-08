@@ -7,14 +7,16 @@ module.exports = {
       env: {
         "NODE_ENV": "development",
         "PORT": 1101,
-        "DATABASE_CONN": "postgres://postgres:Tikomdik2019@192.168.100.25:5432/temporary_ta_presensi",
-        "JWT_CONF_TOKEN": "$1$MVdV2Riq$C37FIkSV7yHA5gowfCKnD0"
+        "DATABASE_CONN": "postgres://postgres:root@localhost:5432/my_presence",
+        "JWT_CONF_TOKEN": "$1$MVdV2Riq$C37FIkSV7yHA5gowfCKnD0",
+        "JWT_TOKEN_ATASAN": "0e186e6fc639e92528d02613b8cd2baa"
       },
       env_production: {
         "NODE_ENV": "production",
         "PORT": 1101,
         "DATABASE_CONN": "postgres://postgres:Tikomdik2019@192.168.100.25:5432/temporary_ta_presensi",
-        "JWT_CONF_TOKEN": "$1$MVdV2Riq$C37FIkSV7yHA5gowfCKnD0"
+        "JWT_CONF_TOKEN": "$1$MVdV2Riq$C37FIkSV7yHA5gowfCKnD0",
+        "JWT_TOKEN_ATASAN": "0e186e6fc639e92528d02613b8cd2baa"
       }
     }],
   
