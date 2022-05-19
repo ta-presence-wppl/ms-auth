@@ -40,7 +40,8 @@ router.post('/', validator.validate("check_auth"), validator.verify, (req, res, 
                 	tgl_lahir: x.tgl_lahir,
                 	email: x.email,
                 	no_telp: x.no_telp,
-                	kode_jabatan: x.kode_jabatan
+                	kode_jabatan: x.kode_jabatan,
+                	id_atasan: x.id_atasan
                 },
                 token: authChecker.generateToken(x)
             })
@@ -59,7 +60,7 @@ router.post('/', validator.validate("check_auth"), validator.verify, (req, res, 
     });
 });
 
-router.post('/create-user', validator.validate("check_auth"), validator.verify, (req, res, next) => {
+router.post('/create-user', validator.validate("check_register"), validator.verify, (req, res, next) => {
     new UsersControllers().createUsers(req.body).then(x => {
         res.send({
             message: 'Service Auth',

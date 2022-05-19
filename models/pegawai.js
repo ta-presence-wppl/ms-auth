@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt');
 module.exports = function (sequelize, DataTypes) {
   var pegawaiSchema = sequelize.define('pegawai', {
     id_peg: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      defaultValue: Sequelize.UUIDV4,
+      autoIncrement: true,
     },
     password: {
       type: DataTypes.TEXT,
@@ -39,12 +39,12 @@ module.exports = function (sequelize, DataTypes) {
         key: 'kode_jabatan'
       }
     },
-    salt: {
-      type: DataTypes.STRING,
-      get() {
-        return () => this.getDataValue('salt')
-      }
-    }
+    // salt: {
+    //   type: DataTypes.STRING,
+    //   get() {
+    //     return () => this.getDataValue('salt')
+    //   }
+    // }
   }, {
     sequelize,
     tableName: 'pegawai',

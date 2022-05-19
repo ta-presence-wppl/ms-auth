@@ -24,6 +24,7 @@ exports.checkAuth = (req, res, next)=>{
 }
 
 exports.generateToken = (data) => {
-    var token = data ? data.kode_jabatan == 1 ? process.env.JWT_CONF_TOKEN : data.kode_jabatan == 2 ? process.env.JWT_TOKEN_ATASAN : null : null;
+    var kodeJabatan = data.kode_jabatan.replace(/\s/g, '');
+    var token = kodeJabatan != 'SPV' ? process.env.JWT_CONF_TOKEN : process.env.JWT_TOKEN_ATASAN; //data.kode_jabatan != 1 ? process.env.JWT_TOKEN_ATASAN : null : null;
     return jwt.sign(data, token);
 }

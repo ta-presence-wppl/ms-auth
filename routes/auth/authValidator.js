@@ -8,6 +8,15 @@ exports.validate = (method) => {
                 body('password', 'password harus diinput').notEmpty(),
             ]
         }
+        case 'check_register': {
+            return [
+                body('email', 'email harus diinput').notEmpty(),
+                body('password', 'password harus diinput').notEmpty(),
+                body('id_atasan', 'id_atasan harus diinput').notEmpty(),
+                body('no_telp', 'no_telp harus diinput').notEmpty(),
+                body('kode_jabatan', 'kode_jabatan harus diinput').notEmpty(),
+            ]
+        }
     }
 }
 
