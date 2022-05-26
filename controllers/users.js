@@ -15,9 +15,9 @@ class UsersControllers {
         return new Promise((resolve, reject) => {
             try {
                 models.pegawai.findOne({
-                    attributes: {
-                        exclude: ['id_peg']
-                    },
+                    // attributes: {
+                    //     exclude: ['salt']
+                    // },
                     where: {
                         email: user.email // user email
                     }

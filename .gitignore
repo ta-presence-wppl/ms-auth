@@ -6,6 +6,10 @@
 /upload
 /.pnp
 .pnp.js
+<<<<<<< HEAD
+=======
+package-lock.json
+>>>>>>> 396e9f4b0c9aaded10a83e3efacf9e87da800528
 
 # testing
 /coverage

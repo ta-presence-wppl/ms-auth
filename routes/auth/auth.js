@@ -19,6 +19,13 @@ const authChecker = require('../../services/auth_check');
  *          - email
  *          - password
  */
+
+router.get('/', (req, res, next) => {
+    res.json({
+        message: 'Tes'
+    })
+})
+
 router.post('/', validator.validate("check_auth"), validator.verify, (req, res, next) => {
     new UsersControllers().getUsers({
         email: req.body.email,
@@ -28,7 +35,14 @@ router.post('/', validator.validate("check_auth"), validator.verify, (req, res, 
             res.send({
                 message: 'Service Auth',
                 route: '/auth/',
-                data: x,
+                data: {
+                	nama: x.nama,
+                	tgl_lahir: x.tgl_lahir,
+                	email: x.email,
+                	no_telp: x.no_telp,
+                	kode_jabatan: x.kode_jabatan,
+                	id_atasan: x.id_atasan
+                },
                 token: authChecker.generateToken(x)
             })
         }else{
@@ -46,7 +60,7 @@ router.post('/', validator.validate("check_auth"), validator.verify, (req, res, 
     });
 });
 
-router.post('/create-user', validator.validate("check_auth"), validator.verify, (req, res, next) => {
+router.post('/create-user', validator.validate("check_register"), validator.verify, (req, res, next) => {
     new UsersControllers().createUsers(req.body).then(x => {
         res.send({
             message: 'Service Auth',
@@ -54,7 +68,6 @@ router.post('/create-user', validator.validate("check_auth"), validator.verify, 
             data: x
         })
     }).catch(err => {
-        console.log(err)
         var details = {
             parent: err.parent,
             name: err.name,

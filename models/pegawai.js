@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     password: {
       type: DataTypes.TEXT,
@@ -32,7 +32,7 @@ module.exports = function (sequelize, DataTypes) {
       unique: "pegawai_no_telp_key"
     },
     kode_jabatan: {
-      type: DataTypes.STRING,
+      type: DataTypes.SMALLINT,
       allowNull: false,
       references: {
         model: 'jabatan',
