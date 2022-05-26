@@ -25,7 +25,8 @@ class UsersControllers {
                     if (!response) {
                         resolve(false);
                     } else {
-                        if (!response.validPassword(user.password)) {
+                        const cond = await response.validPassword(user.password)
+                        if (!cond) {
                             resolve(false);
                         } else {
                             delete response.dataValues.password
