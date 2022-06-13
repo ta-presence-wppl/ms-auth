@@ -32,26 +32,49 @@ router.put('/update-user', validator.validate("check_update"), validator.verify,
     const filtered = filterObj(req.body, allowed);
     filtered['id_peg'] = req.user_data.id_peg;
 
-    new UsersControllers().updateUsers(filtered).then(x => {
-        res.status(201).send({
-            message: 'Sukses Update Data!',
-            route: '/auth/update-user'
-        })
-    }).catch(err => {
-        var details = {
-            parent: err.parent,
-            name: err.name,
-            message: err.message
-        }
-        var error = new Error("Error pada server");
-        error.status = 500;
-        error.data = {
-            date:new Date(),
-            route:req.originalUrl,
-            details:details
-        };
-        next(error);
-    });
+    if(filtered.password){
+        new UsersControllers().updateUsers(filtered, true).then(x => {
+            res.status(201).send({
+                message: 'Sukses Update Data!',
+                route: '/auth/update-user'
+            })
+        }).catch(err => {
+            var details = {
+                parent: err.parent,
+                name: err.name,
+                message: err.message
+            }
+            var error = new Error("Error pada server");
+            error.status = 500;
+            error.data = {
+                date:new Date(),
+                route:req.originalUrl,
+                details:details
+            };
+            next(error);
+        });
+    }else{
+        new UsersControllers().updateUsers(filtered, false).then(x => {
+            res.status(201).send({
+                message: 'Sukses Update Data!',
+                route: '/auth/update-user'
+            })
+        }).catch(err => {
+            var details = {
+                parent: err.parent,
+                name: err.name,
+                message: err.message
+            }
+            var error = new Error("Error pada server");
+            error.status = 500;
+            error.data = {
+                date:new Date(),
+                route:req.originalUrl,
+                details:details
+            };
+            next(error);
+        });
+    }
 });
 //End
 

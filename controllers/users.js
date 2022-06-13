@@ -11,14 +11,14 @@ class UsersControllers {
         })
     }
 
-    updateUsers(data) {
+    updateUsers(data, hooks) {
         return models.pegawai.update({
             ...data
         },{
             where: {
                 id_peg: data.id_peg
             },
-            individualHooks: true,
+            individualHooks: hooks,
         })
     }
 
