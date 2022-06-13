@@ -17,6 +17,13 @@ exports.validate = (method) => {
                 body('kode_jabatan', 'kode_jabatan harus diinput').notEmpty(),
             ]
         }
+        case 'check_update': {
+            return [
+                body('email', 'email -or').optional(),
+                body('password', 'password -or').optional(),
+                body('no_telp', 'no_telp -or').optional(),
+            ]
+        }
     }
 }
 

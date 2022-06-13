@@ -4,8 +4,8 @@ const {query, body, param,validationResult, header} = require('express-validator
 exports.checkAuth = (req, res, next)=>{
     var headers = req.headers;
     if(typeof headers['authorization']!=='undefined'){
-        if(headers['authorization'].search("token=")>-1){
-            jwt.verify(headers['authorization'].split(";")[0].replace("token=", ""), process.env.JWT_CONF_TOKEN, (err, decoded)=>{
+        if(headers['authorization']){
+            jwt.verify(headers['authorization'].split(";")[0], process.env.JWT_CONF_TOKEN, (err, decoded)=>{
                 if(!err){
                     req.user_data=decoded;
                     return next();
@@ -23,8 +23,6 @@ exports.checkAuth = (req, res, next)=>{
     }
 }
 
-exports.generateToken = (data) => {
-    var kodeJabatan = data.kode_jabatan.replace(/\s/g, '');
-    var token = kodeJabatan != 'SPV' ? process.env.JWT_CONF_TOKEN : process.env.JWT_TOKEN_ATASAN; //data.kode_jabatan != 1 ? process.env.JWT_TOKEN_ATASAN : null : null;
-    return jwt.sign(data, token);
+exports.generateToken = (data)=>{
+    return jwt.sign(data, process.env.JWT_CONF_TOKEN);
 }
